@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	
+	<!-- chat integration -->
+	<link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/10.1.4/dist/converse.min.css">
+	<script src="https://cdn.conversejs.org/10.1.4/dist/converse.min.js" charset="utf-8"></script>
 </head>
 <body>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////
@@ -695,15 +699,29 @@
     <script src="assets/vendors/js/glightbox.min.js"></script>
 
     <script type="text/javascript">
-      const lightbox = GLightbox({
-        'touchNavigation': true,
-        'href': 'https://www.youtube.com/watch?v=J9lS14nM1xg',
-        'type': 'video',
-        'source': 'youtube', //vimeo, youtube or local
-        'width': 900,
-        'autoPlayVideos': 'true',
-});
-    
+		/*
+		const lightbox = GLightbox({
+			'touchNavigation': true,
+			'href': 'https://www.youtube.com/watch?v=J9lS14nM1xg',
+			'type': 'video',
+			'source': 'youtube', //vimeo, youtube or local
+			'width': 900,
+			'autoPlayVideos': 'true',
+		});
+		*/
+		converse.initialize({
+			bosh_service_url: 'https://srv416477.hstgr.cloud:7443/http-bind/',
+			view_mode: 'overlayed',
+			allow_user_trust_override: false,
+			allow_registration: false,
+			auto_reconnect: true,
+			auto_subscribe: true,
+			auto_join_on_invite: true,
+			blacklisted_plugins: [
+				'converse-rosterview', 'converse-register' 
+			],
+			dark_theme: true
+		});
     </script>
      <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
