@@ -742,6 +742,10 @@
 				$.ajax({
 					type: "POST",
 					url: "https://srv416477.hstgr.cloud:9443/inquiry",
+                    crossDomain: true,
+                    xhrFields: {
+                        withCredentials: false // Set to true if you need to send cookies
+                    },
 					data: JSON.stringify(payload), // JSON payload
 					contentType: "application/json", // Set content type to JSON
 					success: function (response) {				
