@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
 	<!-- chat integration -->
 	<link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/10.1.4/dist/converse.min.css">
 	<script src="https://cdn.conversejs.org/10.1.4/dist/converse.min.js" charset="utf-8"></script>
@@ -63,7 +65,7 @@
             We will provide you smart digital solutions for your real business problems!
           </span>
         </h1>
-        <button type="button" class="rounded-pill btn-rounded">Get in Touch
+        <button type="button" class="rounded-pill btn-rounded" onclick="window.location.href='#contact';">Get in Touch
           <span><i class="fas fa-arrow-right"></i></span>
         </button>
       </div>
@@ -173,7 +175,7 @@
           <p class="lh-lg">
             Ignite your brand's online visibility with our tailored digital marketing strategies. We analyze, plan, and execute data-driven campaigns across various channels to engage your target audience and drive measurable results. From SEO and social media to content marketing and PPC, we optimize your online presence for maximum impact.
           </p>
-          <button type="button" class="rounded-pill btn-rounded border-primary">Learn more
+          <button type="button" class="rounded-pill btn-rounded border-primary" onclick="window.location.href='#contact';">Learn more
             <span><i class="fas fa-arrow-right"></i></span>
           </button>
         </div>
@@ -200,7 +202,7 @@
 			<br><br>
 			Unlock the potential of online selling with our eCommerce expertise. Our end-to-end solutions empower you to establish and grow a successful online store. From seamless browsing experiences to secure payment gateways, we enable you to provide your customers with an unparalleled shopping journey.
           </p>
-          <button type="button" class="rounded-pill btn-rounded border-primary">Learn more
+          <button type="button" class="rounded-pill btn-rounded border-primary" onclick="window.location.href='#contact';">Learn more
             <span><i class="fas fa-arrow-right"></i></span>
           </button>
         </div>
@@ -215,7 +217,7 @@
           <p class="lh-lg">
             Elevate your customer engagement with real-time communication. We integrate advanced chat and video call functionalities into your website, fostering meaningful connections between your brand and your customers. Deliver exceptional customer support and personalized interactions that set you apart from the competition.
           </p>
-          <button type="button" class="rounded-pill btn-rounded border-primary">Learn more
+          <button type="button" class="rounded-pill btn-rounded border-primary" onclick="window.location.href='#contact';">Learn more
             <span><i class="fas fa-arrow-right"></i></span>
           </button>
         </div>
@@ -533,21 +535,21 @@
       <div class="col-12 col-lg-6 bg-white shadow p-3">
         <div class="form w-100 pb-2">
           <h4 class="display-3--title mb-5">start your project</h4>
-          <form action="#" class="row">
+          <form id="inquiryForm" class="row">
             <div class="col-lg-6 col-md mb-3">
-              <input type="text" placeholder="First Name" id="inputFirstName" class="shadow form-control form-control-lg">
+              <input type="text" placeholder="First Name" id="firstName" class="shadow form-control form-control-lg" required>
             </div>
             <div class="col-lg-6 col-md mb-3">
-              <input type="text" placeholder="Last Name" id="inputLastName" class="shadow form-control form-control-lg">
+              <input type="text" placeholder="Last Name" id="lastName" class="shadow form-control form-control-lg" required>
             </div>
             <div class="col-lg-12 mb-3">
-              <input type="email" placeholder="email address" id="inputEmail" class="shadow form-control form-control-lg">
+              <input type="email" placeholder="email address" id="email" class="shadow form-control form-control-lg" required>
             </div>
             <div class="col-lg-12 mb-3">
-              <textarea name="message" placeholder="message" id="message" rows="8" class="shadow form-control form-control-lg"></textarea>
+              <textarea name="message" placeholder="message" id="message" rows="8" class="shadow form-control form-control-lg" required></textarea>
             </div>
             <div class="text-center d-grid mt-1">
-              <button type="button" class="btn btn-primary rounded-pill pt-3 pb-3">
+              <button type="submit" class="btn btn-primary rounded-pill pt-3 pb-3" >
                 submit
                 <i class="fas fa-paper-plane"></i>
               </button>
@@ -722,6 +724,36 @@
 			],
 			dark_theme: true
 		});
+		
+        $(document).ready(function () {
+            $('#inquiryForm').submit(function (event) {
+				// Prevent the default form submission behavior
+				event.preventDefault();
+				
+				// Define your payload data as an object
+				var payload = {
+					account: {"id" : 1}, //fixed account id for the web site
+					firstName: $("#firstName").val(),
+					lastName: $("#lastName").val(),
+					email: $("#email").val(),
+					message: $("#message").val()
+				};
+
+				$.ajax({
+					type: "POST",
+					url: "https://srv416477.hstgr.cloud:9443/inquiry",
+					data: JSON.stringify(payload), // JSON payload
+					contentType: "application/json", // Set content type to JSON
+					success: function (response) {				
+					alert("Thank you for taking the time to reach out to us through our website. We greatly appreciate your interest in \"Xolutions\" and for providing us with your contact details.");
+						console.log("POST request success:", response);
+					},
+					error: function (error) {
+						console.error("POST request error:", error);
+					}
+				});
+            });
+        });
     </script>
      <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
