@@ -14,9 +14,6 @@
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
-	<!-- chat integration -->
-	<link rel="stylesheet" type="text/css" media="screen" href="./dist/converse.min.css">
-	<script src="./dist/converse.min.js" charset="utf-8"></script>
 </head>
 <body>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////
@@ -696,9 +693,15 @@
 </a>
 
 
-
+	<fastpath-chat
+		hosted="https://chat.xolutions.in.net/static"
+		domain="xolutions.in.net"
+		server="xmpp.xolutions.in.net"
+		workgroup="demo">
+	</fastpath-chat>
+	<script src="https://chat.xolutions.in.net/static/ofmeet.js"></script>
    
-    <script src="assets/vendors/js/glightbox.min.js"></script>
+    <!--  <script src="assets/vendors/js/glightbox.min.js"></script>  -->
 
     <script type="text/javascript">
 		/*
@@ -711,28 +714,6 @@
 			'autoPlayVideos': 'true',
 		});
 		*/
-		converse.initialize({
-			bosh_service_url: 'https://xmpp.xolutions.in.net/http-bind', // Replace with your BOSH service URL
-			show_controlbox_by_default: true,
-			authentication: 'anonymous',
-			allow_logout: false, // Prevent users from logging out
-			anonymous_domain: 'xolutions.in.net',
-			jid: 'xolutions.in.net',
-            auto_join_rooms: [
-                '78454910-734f-47ef-b140-4d374e389be1@conference.xolutions.in.net',
-            ],
-            notify_all_room_messages: [
-                '78454910-734f-47ef-b140-4d374e389be1@conference.xolutions.in.net',
-            ],
-          	play_sounds: true,
-          	visible_toolbar_buttons: {
-                                         call: false,
-                                         spoiler: false,
-                                         emoji: true,
-                                         toggle_occupants: false
-                                     },
-          	theme: "dracula"
-		});
 		
         $(document).ready(function () {
             $('#inquiryForm').submit(function (event) {
