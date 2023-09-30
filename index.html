@@ -15,8 +15,8 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
 	<!-- chat integration -->
-	<link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/10.1.4/dist/converse.min.css">
-	<script src="https://cdn.conversejs.org/10.1.4/dist/converse.min.js" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="./dist/converse.min.css">
+	<script src="./dist/converse.min.js" charset="utf-8"></script>
 </head>
 <body>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////
@@ -40,10 +40,10 @@
           <li class="nav-item"><a class="nav-link" href="#contact">contact</a>
           </li>
         </ul>
-        <button type="button" class="rounded-pill btn-rounded">
-          +91 XXXXXXXXXX
+        <button type="button" class="rounded-pill btn-rounded" onclick="window.location.href='http://portal.xolutions.in.net/';">
+          Login
           <span>
-            <i class="fas fa-phone-alt"></i>
+            <i class="fas fa-user"></i>
           </span>
         </button>
       </div>
@@ -594,7 +594,7 @@
           </svg>
         </div>
         <div class="contact-box__info">
-          <a href="#" class="contact-box__info--title">info@xolutions.in</a>
+          <a href="#" class="contact-box__info--title">info@xolutions.in.net</a>
           <p class="contact-box__info--subtitle">Online support</p>
         </div>
       </div>
@@ -669,8 +669,8 @@
         <h5 class="text-capitalize fw-bold">contact</h5>
         <hr class="bg-white d-inline-block mb-4" style="width: 60px; height: 2px;">
         <ul class="list-inline campany-list">
-          <li><a href="mailto:support@xolutions.in">Support team</a></li>
-          <li><a href="mailto:sales@xolutions.in">Sales team</a></li>
+          <li><a href="mailto:info@xolutions.in.net">Support team</a></li>
+          <li><a href="mailto:info@xolutions.in.net">Sales team</a></li>
         </ul>
       </div>
     </div>
@@ -712,17 +712,26 @@
 		});
 		*/
 		converse.initialize({
-			bosh_service_url: 'https://srv416477.hstgr.cloud:7443/http-bind/',
-			view_mode: 'overlayed',
-			allow_user_trust_override: false,
-			allow_registration: false,
-			auto_reconnect: true,
-			auto_subscribe: true,
-			auto_join_on_invite: true,
-			blacklisted_plugins: [
-				'converse-rosterview', 'converse-register' 
-			],
-			dark_theme: true
+			bosh_service_url: 'https://xmpp.xolutions.in.net/http-bind', // Replace with your BOSH service URL
+			show_controlbox_by_default: true,
+			authentication: 'anonymous',
+			allow_logout: false, // Prevent users from logging out
+			anonymous_domain: 'xolutions.in.net',
+			jid: 'xolutions.in.net',
+            auto_join_rooms: [
+                '78454910-734f-47ef-b140-4d374e389be1@conference.xolutions.in.net',
+            ],
+            notify_all_room_messages: [
+                '78454910-734f-47ef-b140-4d374e389be1@conference.xolutions.in.net',
+            ],
+          	play_sounds: true,
+          	visible_toolbar_buttons: {
+                                         call: false,
+                                         spoiler: false,
+                                         emoji: true,
+                                         toggle_occupants: false
+                                     },
+          	theme: "dracula"
 		});
 		
         $(document).ready(function () {
@@ -741,7 +750,7 @@
 
 				$.ajax({
 					type: "POST",
-					url: "https://srv416477.hstgr.cloud:9443/inquiry",
+					url: "https://core.xolutions.in.net/inquiry",
                     crossDomain: true,
 					headers: {  'Access-Control-Allow-Origin': '*' },
                     xhrFields: {
