@@ -644,8 +644,6 @@ progress {
   margin-top: calc(var(--bs-gutter-y) * -1);
   margin-right: calc(var(--bs-gutter-x) * -.5);
   margin-left: calc(var(--bs-gutter-x) * -.5);
-}
-.row > * {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
@@ -11201,7 +11199,7 @@ textarea.form-control-lg {
   height: 3rem;
   right: 1.875rem;
   bottom: 1.875rem;
-  z-index: 9999;
+  z-index: 10;
 }
 .back-to-top i {
   color: #fff;
